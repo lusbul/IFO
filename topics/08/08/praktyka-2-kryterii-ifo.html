@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Групова практика: від орієнтира до зрозумілих критеріїв оцінювання результатів навчання.">
+<meta name="theme-color" content="#183b56">
+<title>Матеріали ІФО — Практика 2</title>
+<style>
+:root{--navy:#20202c;--blue:#7356b5;--gold:#b5ff72;--ink:#20202c;--muted:#595a69;--line:#dedce8;--paper:#fff;--wash:#f8f8fc;--mint:#f1ebff}
+*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:#fff;color:#20202c;padding:25px 20px 26px;border-bottom:1px solid #dedce8}.wrap{max-width:1040px;margin:0 auto;padding:0 18px}.topnav{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px}.topnav a{color:#60468f;font-weight:750;text-decoration:none}.topnav a:hover{text-decoration:underline}
+.kicker{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:1;font-weight:750;color:#60468f}
+h1{font-size:clamp(1.85rem,4vw,2.8rem);line-height:1.12;margin:.5rem 0 .7rem}header p{max-width:800px;margin:0;color:#515263}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 0}.step{padding:7px 12px;border:1px solid #dedce8;border-radius:999px;font-size:.88rem;background:#faf8ff;color:#20202c}.step b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#b5ff72;color:#202b17;margin-right:6px}
+main{padding:24px 0 48px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;margin:0 0 18px;box-shadow:0 8px 24px #14344a0a}
+h2{font-size:1.28rem;color:var(--navy);margin:0 0 7px}h3{font-size:1rem;color:var(--navy);margin:0 0 5px}.lead{color:var(--muted);margin:.1rem 0 15px}
+.note{background:#f5ffea;border:1px solid #b5d99a;border-left:4px solid var(--gold);padding:12px 15px;border-radius:9px;margin:12px 0;color:#4b4435}
+.info{background:#f1ebff;border-left:4px solid var(--blue);padding:12px 15px;border-radius:9px;margin:12px 0;color:#334b5a}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+label.field{display:block;font-weight:650;color:#344956}
+input[type=text],textarea,select{display:block;width:100%;font:inherit;border:1px solid #cbd6dd;border-radius:9px;padding:10px 12px;margin-top:6px;color:var(--ink);background:white}
+textarea{min-height:76px;resize:vertical}
+button{border:0;border-radius:10px;padding:11px 16px;font:inherit;font-weight:700;cursor:pointer}
+button:hover{filter:brightness(.96)}.primary{background:#b5ff72;color:#202b17}.secondary{background:#eee8fa;color:#493764}.quiet{background:transparent;color:#455c6c;border:1px solid var(--line)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.outcome-box{border:1px solid #cbdce5;background:#f6f3ff;border-radius:12px;padding:14px;margin:12px 0}.code{font-size:.8rem;font-weight:800;color:#2b6684}
+.dimensions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.dimension{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);padding:12px;border-radius:11px;background:white;cursor:pointer}
+.dimension:has(input:checked){background:#effbdf;border-color:#a5c88c}.dimension input{accent-color:#7356b5;margin-top:4px}
+.dimension small{display:block;color:#65727c;margin-top:3px}
+.level-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.level-card{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fcfbff}
+.level-name{font-weight:800;color:var(--navy);display:flex;align-items:center;gap:8px}.num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#e8f0f4;color:var(--navy)}
+.level-card p{font-size:.9rem;color:var(--muted);margin:5px 0}
+.output{background:#f6f3ff;border:1px solid #dedce8;border-radius:14px;padding:18px}
+.summary-row{padding:10px 0;border-top:1px solid #dce8e3}.summary-row:first-of-type{border-top:0}
+.badge{display:inline-block;background:#b5ff72;color:#202b17;padding:3px 8px;border-radius:999px;font-size:.78rem;font-weight:700;margin-right:7px}
+.empty{color:#6d7780;font-style:italic}footer{font-size:.86rem;color:var(--muted);padding:0 4px 24px}
+@media(max-width:720px){.fields,.dimensions,.level-grid{grid-template-columns:1fr}.panel{padding:18px}.wrap{padding:0 13px}}
+@media print{body{background:white;font-size:11pt;color:#111}.no-print,header .steps,.actions,.input-panel{display:none!important}header{background:white;color:#111;padding:0 0 14px;border-bottom:2px solid #dedce8}header p{color:#333}.wrap{max-width:none;padding:0}main{padding:12px 0}.panel{box-shadow:none;border:0;border-radius:0;padding:12px 0;margin:0}.output{border:1px solid #aaa;background:white}.output h3{color:#20202c}textarea,input,select{border:0;border-bottom:1px solid #777;border-radius:0;padding:3px 0}.summary-row{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<nav class="topnav"><a href="index.html">← Тема 08</a><a href="praktyka-1-materialy-ifo.html">← Практика 1</a></nav><div class="kicker">Матеріали ІФО · групова практика 2</div>
+<h1>Від орієнтира до критеріїв оцінювання</h1>
+<p>Оберіть один результат навчання й один його прояв, який оцінюватимете в конкретному завданні. Опишіть, що саме учень робить на кожному з чотирьох рівнів.</p>
+<div class="steps"><span class="step"><b>1</b>Результат і орієнтир</span><span class="step"><b>2</b>Доречні виміри</span><span class="step"><b>3</b>Чотири рівні</span></div>
+</div></header>
+<main class="wrap">
+<section class="panel input-panel">
+<h2>1. Виберіть один результат і один орієнтир</h2>
+<p class="lead">Продовжіть роботу з Практики 1 або виберіть результат зі списку. Якщо маєте формулювання зі своєї програми, використайте найближчий варіант і уточніть орієнтир під своє завдання.</p>
+<div class="fields">
+<label class="field">Результат навчання
+<select id="resultSelect"></select></label>
+<label class="field">Рівень вивчення
+<select id="level"><option>Основний</option><option>Поглиблений</option></select></label>
+</div>
+<div class="actions no-print" style="margin:0 0 12px"><button class="secondary" id="importBtn">Завантажити обрані результати з Практики 1</button><span id="importStatus" aria-live="polite"></span></div>
+<div class="outcome-box" id="outcomeBox"></div>
+<label class="field">Орієнтир для оцінювання — який саме прояв результату Ви оцінюєте?
+<textarea id="indicator" placeholder="Сформулюйте одне конкретне вміння або дію з обраного результату. Звірте формулювання зі стандартом або навчальною програмою."></textarea></label>
+<div class="note"><b>Пам’ятайте:</b> для одного результату достатньо одного орієнтира в цій вправі. Не потрібно описувати всі результати кейсу.</div>
+</section>
+<section class="panel input-panel">
+<h2>2. Оберіть доречні виміри</h2>
+<p class="lead">Позначте один або два виміри, за якими можна буде побачити поступ саме в обраному орієнтирі. Категорії — підказки для роботи, а не обов’язковий список.</p>
+<div class="dimensions" id="dimensions">
+<label class="dimension"><input type="checkbox" value="Когнітивні процеси"><span><b>Когнітивні процеси</b><small>Що розуміє і як міркує: відтворює → застосовує → порівнює → аналізує → оцінює.</small></span></label>
+<label class="dimension"><input type="checkbox" value="Навчальна діяльність"><span><b>Навчальна діяльність</b><small>Як виконує завдання: за зразком → за алгоритмом → самостійно обирає спосіб → пропонує рішення.</small></span></label>
+<label class="dimension"><input type="checkbox" value="Самостійність"><span><b>Самостійність</b><small>Скільки допомоги потребує: постійна підтримка → підказка → самостійна робота → організовує інших.</small></span></label>
+<label class="dimension"><input type="checkbox" value="Комунікація та взаємодія"><span><b>Комунікація та взаємодія</b><small>Як співпрацює: відповідає на звернення → долучається → конструктивно узгоджує → спрямовує взаємодію.</small></span></label>
+<label class="dimension"><input type="checkbox" value="Частота вияву вмінь"><span><b>Частота вияву вмінь</b><small>Як стабільно діє: в окремих випадках → після нагадування → системно в типових ситуаціях → самостійно в нових.</small></span></label>
+</div>
+<div class="note"><b>Орієнтир за групою:</b> для ІФО 1 зазвичай доречні когнітивні процеси; для ІФО 2 — спосіб діяльності; для ІФО 3 — самостійність; для ІФО 4 — стабільність дотримання правил. Обирайте за змістом завдання.</div>
+</section>
+<section class="panel input-panel">
+<h2>3. Опишіть критерій на чотирьох рівнях</h2>
+<p class="lead">На кожному рівні опишіть дію або доказ, який можна побачити. Рівні мають показувати поступ у тому самому орієнтирі.</p>
+<div class="level-grid">
+<div class="level-card"><div class="level-name"><span class="num">1</span>Початковий</div><p>Що учень виконує частково? Якої прямої допомоги потребує?</p><textarea id="lv1" placeholder="Наприклад: називає окремі дані за прямою підказкою; висновок поки не пов’язує з даними."></textarea></div>
+<div class="level-card"><div class="level-name"><span class="num">2</span>Середній</div><p>Яку просту частину завдання виконує? Яка підтримка ще потрібна?</p><textarea id="lv2" placeholder="Наприклад: знаходить потрібні дані та порівнює окремі показники за заданою ознакою."></textarea></div>
+<div class="level-card"><div class="level-name"><span class="num">3</span>Достатній</div><p>Що виконує самостійно в типовій ситуації? Чим підтверджує відповідь?</p><textarea id="lv3" placeholder="Наприклад: виявляє закономірність і формулює висновок, посилаючись на дані."></textarea></div>
+<div class="level-card"><div class="level-name"><span class="num">4</span>Високий</div><p>Як аналізує альтернативи або переносить уміння в нову ситуацію?</p><textarea id="lv4" placeholder="Наприклад: порівнює можливі пояснення, оцінює значущість показників і аргументує висновок."></textarea></div>
+</div>
+<div class="info"><b>Перевірка перед збереженням:</b> не використовуйте лише слова «добре», «погано», «якісно». Назвіть, що саме видно у відповіді, діях чи продукті учня. Рівні відрізняються складністю міркування або самостійністю.</div>
+</section>
+<section class="panel output-panel">
+<h2>Підсумок групи</h2>
+<p class="lead">Збережіть роботу або роздрукуйте її. Вона може стати основою для обговорення й переходу до оцінювання.</p>
+<div class="output" id="summary"></div>
+<div class="actions no-print"><button class="primary" id="copyBtn">Скопіювати підсумок</button><button class="secondary" id="pdfBtn">Друк / зберегти PDF</button><button class="quiet" id="resetBtn">Очистити відповіді</button></div>
+<p id="copyStatus" class="no-print" aria-live="polite"></p>
+</section>
+<footer>Практика 2 · Автозбереження відбувається локально в цьому браузері. Дані форми не надсилаються на сервер.</footer>
+</main>
+<script>
+const outcomes=[
+{group:"ІФО 1 · Робота з інформацією, даними, моделями",id:"1.1.1",text:"Обґрунтовано обирає та доцільно використовує цифрові пристрої та/чи інформаційні технології для розв’язування задач з різних галузей."},
+{group:"ІФО 1 · Робота з інформацією, даними, моделями",id:"1.2.3",text:"Досліджує та аналізує набори даних, взаємозв’язки та залежності у них."},
+{group:"ІФО 1 · Робота з інформацією, даними, моделями",id:"1.4.1",text:"Обґрунтовує власну позицію щодо достовірності інформації та надійності джерел, застосовуючи стратегії критичного мислення."},
+{group:"ІФО 2 · Створення інформаційних продуктів",id:"2.1.1",text:"Обирає відомі та розробляє власні алгоритми для розв’язування задач з різних галузей."},
+{group:"ІФО 2 · Створення інформаційних продуктів",id:"2.4.1",text:"Створює та вдосконалює інформаційні продукти для розв’язування задач з різних галузей."},
+{group:"ІФО 2 · Створення інформаційних продуктів",id:"2.4.2",text:"Комбінує дані різних типів під час створення інформаційних продуктів."},
+{group:"ІФО 2 · Створення інформаційних продуктів",id:"2.5.1",text:"Демонструє здатність гнучко взаємодіяти в команді та пристосовуватися до нових умов під час розробки проєктів з використанням інформаційних технологій."},
+{group:"ІФО 4 · Безпечна та відповідальна робота з ІТ",id:"4.1.2",text:"Обирає і застосовує стратегію кібербезпеки для власного інформаційного середовища."}
+];
+const $=s=>document.querySelector(s);
+let state={resultId:"1.2.3",level:"Основний",indicator:"",dims:[],levels:["","","",""],groupName:""};
+function load(){try{state={...state,...JSON.parse(localStorage.getItem("practice2-ifo-v1")||"{}")};}catch(e){}}
+function save(){localStorage.setItem("practice2-ifo-v1",JSON.stringify(state));renderSummary();}
+function current(){return outcomes.find(o=>o.id===state.resultId)||outcomes[1];}
+function renderSelect(){
+const byGroup=[...new Set(outcomes.map(o=>o.group))];
+$("#resultSelect").innerHTML=byGroup.map(g=>'<optgroup label="'+g+'">'+outcomes.filter(o=>o.group===g).map(o=>'<option value="'+o.id+'" '+(state.resultId===o.id?'selected':'')+'>'+o.id+' — '+o.text+'</option>').join("")+'</optgroup>').join("");
+$("#outcomeBox").innerHTML='<span class="code">'+current().group+' · '+current().id+'</span><p style="margin:.4rem 0 0">'+current().text+'</p>';
+}
+function renderSummary(){
+const o=current(),dims=state.dims.length?state.dims.map(x=>'<span class="badge">'+esc(x)+'</span>').join(""):'<span class="empty">не обрано</span>';
+const names=["Початковий","Середній","Достатній","Високий"];
+const lines=state.levels.map((x,i)=>'<div class="summary-row"><b>'+names[i]+':</b> '+(x.trim()?esc(x.trim()):'<span style="color:#9a5b16">ще не заповнено</span>')+'</div>').join("");
+$("#summary").innerHTML='<h3>Робота групи'+(state.groupName.trim()?': '+esc(state.groupName.trim()):'')+'</h3><p><b>Рівень:</b> '+esc(state.level)+' · <b>Результат:</b> '+o.id+'</p><p>'+o.text+'</p><div class="summary-row"><b>Орієнтир:</b> '+(state.indicator.trim()?esc(state.indicator.trim()):'<span style="color:#9a5b16">ще не сформульовано</span>')+'</div><div class="summary-row"><b>Обрані виміри:</b> '+dims+'</div>'+lines+'<div class="summary-row"><b>Самоперевірка:</b> один результат, один орієнтир, спостережувані описи, поступ між рівнями.</div>';
+}
+function esc(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function render(){
+renderSelect();
+$("#level").value=state.level;$("#indicator").value=state.indicator;
+["lv1","lv2","lv3","lv4"].forEach((id,i)=>$("#"+id).value=state.levels[i]||"");
+document.querySelectorAll("#dimensions input").forEach(el=>el.checked=state.dims.includes(el.value));
+renderSummary();
+}
+function importChoices(){
+const box=$("#importStatus");
+try{
+ const saved=JSON.parse(localStorage.getItem("practice1-v2")||"{}");
+ if(!Array.isArray(saved.selected)||!saved.selected.length){box.textContent="Не знайшла збереженого вибору. Перевірте, що відкриваєте обидві практики з однієї GitHub Pages адреси й заповнили Практику 1.";return;}
+ const ids=saved.selected.filter(id=>outcomes.some(o=>o.id===id));
+ if(!ids.length){box.textContent="У Практиці 1 збережені результати, яких немає в короткому переліку цієї версії. Виберіть найближчий результат зі списку.";return;}
+ const id=ids[0];state.resultId=id;render();save();box.textContent="Завантажила перший обраний результат («"+id+"»). Якщо потрібно інший — виберіть його у списку.";
+}catch(e){box.textContent="Не вдалося прочитати збереження Практики 1. Виберіть результат зі списку.";}
+}
+function plain(){
+const o=current(),names=["Початковий","Середній","Достатній","Високий"];
+return "Матеріали ІФО — Практика 2: Від орієнтира до критеріїв оцінювання\nГрупа: "+(state.groupName||"не вказано")+" | Рівень: "+state.level+"\n"+o.group+" · "+o.id+"\n"+o.text+"\nОрієнтир: "+(state.indicator||"не заповнено")+"\nВиміри: "+(state.dims.join(", ")||"не обрано")+"\n\n"+state.levels.map((x,i)=>names[i]+": "+(x||"не заповнено")).join("\n");
+}
+load();render();
+$("#resultSelect").addEventListener("change",e=>{state.resultId=e.target.value;save();renderSelect();});
+$("#level").addEventListener("change",e=>{state.level=e.target.value;save();});
+$("#indicator").addEventListener("input",e=>{state.indicator=e.target.value;save();});
+["lv1","lv2","lv3","lv4"].forEach((id,i)=>$("#"+id).addEventListener("input",e=>{state.levels[i]=e.target.value;save();}));
+document.querySelectorAll("#dimensions input").forEach(el=>el.addEventListener("change",()=>{const checked=[...document.querySelectorAll("#dimensions input:checked")].map(x=>x.value);if(checked.length>2){el.checked=false;alert("Для цієї вправи оберіть один або два виміри.");return;}state.dims=checked;save();}));
+$("#importBtn").addEventListener("click",importChoices);
+$("#copyBtn").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(plain());$("#copyStatus").textContent="Підсумок скопійовано. Його можна вставити в документ або чат.";}catch(e){$("#copyStatus").textContent="Браузер не дозволив копіювання. Скопіюйте текст із підсумку вручну.";}});
+$("#pdfBtn").addEventListener("click",()=>window.print());
+$("#resetBtn").addEventListener("click",()=>{if(confirm("Очистити відповіді Практики 2 у цьому браузері?")){localStorage.removeItem("practice2-ifo-v1");state={resultId:"1.2.3",level:"Основний",indicator:"",dims:[],levels:["","","",""],groupName:""};render();}});
+</script>
+</body>
+</html>

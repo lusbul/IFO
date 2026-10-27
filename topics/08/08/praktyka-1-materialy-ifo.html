@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Матеріали ІФО — Практика 1</title>
+<meta name="description" content="Інтерактивна групова практика: від навчального кейсу до результату навчання з конкретними доказами.">
+<meta name="theme-color" content="#183b56">
+<style>
+:root{--navy:#20202c;--blue:#7356b5;--gold:#b5ff72;--ink:#20202c;--muted:#595a69;--line:#dedce8;--paper:#fff;--wash:#f8f8fc;--mint:#f1ebff;--rose:#fff5e8}
+*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:#fff;color:#20202c;padding:25px 20px 26px;border-bottom:1px solid #dedce8}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}.topnav{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px}.topnav a{color:#60468f;font-weight:750;text-decoration:none}.topnav a:hover{text-decoration:underline}
+.kicker{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:1;font-weight:750;color:#60468f}
+h1{font-size:clamp(1.9rem,4vw,3rem);line-height:1.1;margin:.45rem 0 .75rem}
+header p{max-width:750px;margin:0;color:#515263}
+main{padding:24px 0 52px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;margin:0 0 18px;box-shadow:0 8px 24px #14344a0a}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 0}.step{padding:7px 12px;border:1px solid #dedce8;border-radius:999px;font-size:.88rem;background:#faf8ff;color:#20202c}.step b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#b5ff72;color:#202b17;margin-right:6px}
+h2{font-size:1.3rem;color:var(--navy);margin:0 0 8px}h3{font-size:1rem;color:var(--navy);margin:0 0 6px}
+.lead{color:var(--muted);margin:.1rem 0 16px}.notice{background:#f1ebff;border-left:4px solid var(--blue);padding:12px 15px;border-radius:8px;color:#334b5a;margin:14px 0}
+.callout{background:#f5ffea;border:1px solid #b5d99a;border-radius:12px;padding:12px 14px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.case{position:relative;display:block;border:1.5px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;transition:.15s;background:white}
+.case:hover{border-color:var(--blue);transform:translateY(-1px)}.case.selected{border-color:var(--blue);background:#f1e9ff;box-shadow:0 0 0 2px #7356b522}
+.case input{position:absolute;top:16px;right:16px;accent-color:var(--blue);width:19px;height:19px}
+.tag{display:inline-block;color:#315d73;background:#f1ebff;border-radius:999px;padding:3px 9px;font-size:.75rem;font-weight:700;margin-bottom:8px}
+.case p{margin:5px 25px 0 0;color:#52616b;font-size:.94rem}.case .role{font-size:.84rem;color:#6b7580;margin-top:8px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+label.field{display:block;font-weight:650;color:#344956}
+input[type=text],textarea{display:block;width:100%;font:inherit;border:1px solid #cbd6dd;border-radius:9px;padding:10px 12px;margin-top:6px;color:var(--ink);background:white}
+textarea{min-height:78px;resize:vertical}
+fieldset{border:0;padding:0;margin:0 0 14px}legend{font-weight:750;color:var(--navy);margin-bottom:8px}
+.result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.result{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);padding:12px;border-radius:11px;background:white;cursor:pointer}
+.result:has(input:checked){background:#effbdf;border-color:#a5c88c}
+.result input{margin-top:4px;accent-color:#7356b5;flex:none}
+.code{font-size:.78rem;font-weight:800;color:#2b6684;white-space:nowrap}
+.result small{display:block;color:#64727c;margin-top:3px}
+.count{font-weight:700;color:var(--blue)}.limit{font-size:.9rem;color:var(--muted)}
+.evidence-list{display:grid;gap:12px}.ev-card{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fcfbff}
+.ev-head{display:flex;gap:10px;align-items:flex-start}.ev-head strong{color:var(--navy)}.ev-card textarea{min-height:62px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+button{border:0;border-radius:10px;padding:11px 16px;font:inherit;font-weight:700;cursor:pointer}
+.primary{background:#b5ff72;color:#202b17}.secondary{background:#eee8fa;color:#493764}.quiet{background:transparent;color:#455c6c;border:1px solid var(--line)}
+button:hover{filter:brightness(.96)}
+.output{background:#f6f3ff;border:1px solid #dedce8;border-radius:14px;padding:18px}
+.output h3{margin-bottom:10px}.summary-row{padding:10px 0;border-top:1px solid #dce8e3}.summary-row:first-of-type{border-top:0}
+.badge{display:inline-block;background:#b5ff72;color:#202b17;padding:3px 8px;border-radius:999px;font-size:.78rem;font-weight:700;margin-right:7px}
+.empty{color:#6d7780;font-style:italic}
+footer{font-size:.86rem;color:var(--muted);padding:0 4px 24px}
+@media(max-width:720px){.grid,.result-grid,.fields{grid-template-columns:1fr}.panel{padding:18px}.wrap{padding:0 13px}}
+@media print{
+ body{background:white;font-size:11pt;color:#111}.no-print,header .steps,.actions,.input-panel{display:none!important}
+ header{background:white;color:#111;padding:0 0 14px;border-bottom:2px solid #dedce8}
+ header p{color:#333}.wrap{max-width:none;padding:0}
+ main{padding:12px 0}.panel{box-shadow:none;border:0;border-radius:0;padding:12px 0;margin:0}
+ h1{font-size:22pt;color:#20202c}h2{font-size:15pt}.grid{grid-template-columns:1fr 1fr}
+ .case{break-inside:avoid}.result-grid{grid-template-columns:1fr 1fr}
+ .result{break-inside:avoid;padding:7px}.ev-card{break-inside:avoid}
+ .output{border:1px solid #aaa;background:white}.output h3{color:#20202c}
+ textarea,input[type=text]{border:0;border-bottom:1px solid #777;border-radius:0;padding:3px 0;min-height:0}
+ footer{padding:8px 0}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<nav class="topnav"><a href="index.html">← Тема 08</a><a href="praktyka-2-kryterii-ifo.html">Практика 2 →</a></nav><div class="kicker">Матеріали ІФО · групова практика 1</div>
+<h1>Від кейсу до результату навчання</h1>
+<p>Визначте, які результати учні справді демонструють у кейсі. Для кожного вибору назвіть видимий доказ — дію учня або частину створеного продукту.</p>
+<div class="steps"><span class="step"><b>1</b>Оберіть кейс</span><span class="step"><b>2</b>Виберіть головні результати</span><span class="step"><b>3</b>Покажіть докази</span></div>
+</div>
+</header>
+<main class="wrap">
+<section class="panel input-panel">
+<h2>1. Оберіть один кейс</h2>
+<p class="lead">Читайте лише обраний кейс. Усі варіанти скорочені до ситуації, дії та продукту.</p>
+<div class="grid" id="cases"></div>
+<div class="fields">
+<label class="field">Назва групи (необов’язково)<input type="text" id="groupName" placeholder="Наприклад, Група 2"></label>
+<label class="field">Рівень вивчення
+<select id="level" style="display:block;width:100%;font:inherit;border:1px solid #cbd6dd;border-radius:9px;padding:10px 12px;margin-top:6px">
+<option>Основний</option><option>Поглиблений</option></select>
+</label>
+</div>
+</section>
+<section class="panel input-panel">
+<h2>2. Оберіть лише результати, які справді можна оцінити</h2>
+<p class="lead">Не позначайте результат лише тому, що він трохи пов’язаний із темою. Обирайте той, для якого в кейсі є чітка дія або доказ. Не обов’язково представляти всі чотири групи результатів.</p>
+<div class="notice"><strong>Практична домовленість для цієї вправи:</strong> оберіть 1–3 головні результати. Це обмеження допомагає зосередитися на тому, що реально можна оцінити в межах одного завдання; воно не є нормативною вимогою.</div>
+<div class="callout"><strong>Запитайте себе:</strong> «Що саме зробить учень, і що я побачу або прочитаю, щоб підтвердити цей результат?» Якщо відповідь нечітка — поки не обирайте його.</div>
+<div class="limit">Обрано: <span class="count" id="count">0</span> / 3</div>
+<div id="outcomes"></div>
+<div id="evidence" class="evidence-list" style="margin-top:16px"></div>
+</section>
+<section class="panel output-panel">
+<h2>3. Підсумок роботи групи</h2>
+<p class="lead">Перевірте, чи кожен результат має конкретний доказ. Якщо доказу немає, зніміть позначку або уточніть, що саме учні мають робити.</p>
+<div class="output" id="summary"></div>
+<div class="actions no-print">
+<button class="primary" id="copyBtn">Скопіювати підсумок</button>
+<button class="secondary" id="pdfBtn">Друк / зберегти PDF</button>
+<button class="quiet" id="resetBtn">Очистити відповіді</button>
+</div>
+<p id="copyStatus" class="no-print" aria-live="polite"></p>
+</section>
+<footer>Практика 1 · Результати навчання позначають лише за наявності доказу в діях або продукті учня. Дані цієї сторінки зберігаються локально у браузері.</footer>
+</main>
+<script>
+const cases=[
+{id:"yard",tag:"АНАЛІЗ ОПИТУВАННЯ",title:"Подвір’я, яке обрали ми",role:"Аналітична група учнівської ради",situation:"Учні різного віку хочуть різних змін у шкільному подвір’ї. Є бюджет лише на дві. Рішення треба обґрунтувати даними опитування.",actions:["Створити анонімне опитування для 5–11 класів","Очистити дані й порівняти відповіді вікових груп","Обрати дві зміни та подати рекомендацію"],product:"Дашборд із фільтром за класами та коротка довідка для директора."},
+{id:"rating",tag:"АНАЛІЗ ВІДКРИТИХ ДАНИХ",title:"Рейтинг без міфів",role:"Дата-журналісти міського видання",situation:"У соцмережах поширюють рейтинг шкіл за середнім балом НМТ. Редакція хоче пояснити, що числа показують і чого вони не показують.",actions:["Зібрати відкриті дані НМТ для шкіл міста","Порівняти середній бал і частку високих результатів","Пояснити, як кількість учасників впливає на рейтинг"],product:"Дата-історія з 2–3 діаграмами та порадами для батьків."},
+{id:"auth",tag:"АВТЕНТИФІКАЦІЯ",title:"Увійти й не наслідити",role:"Команда кібербезпеки ліцею",situation:"Учні входять у пошту чи навчальні сервіси з чужих пристроїв і часом залишають відкриті сеанси. Потрібні безпечні, але зрозумілі правила.",actions:["Порівняти способи входу","Визначити, який цифровий слід лишається на шкільному комп’ютері","Скласти алгоритм безпечного входу й виходу"],product:"Коротка інструкція для класу та рекомендація дирекції."},
+{id:"computer",tag:"КОМПЛЕКТАЦІЯ КОМП’ЮТЕРА",title:"Найдорожчий ≠ найкращий",role:"Незалежний технічний консультант",situation:"Родина має бюджет 20 000 грн на комп’ютер для навчання, проєктів і графіки. Продавець радить найдорожчу комплектацію; треба перевірити, чи вона справді потрібна.",actions:["Визначити потреби користувача й вимоги програм","Порівняти три комплектації за ціною та можливостями","Обрати варіант і пояснити рекомендацію"],product:"Порівняльна таблиця з формулами та коротка пам’ятка для родини."}
+];
+const outcomes=[
+{group:"ІФО 1 · Робота з інформацією, даними, моделями",id:"1.1.1",text:"Обґрунтовано обирає та доцільно використовує цифрові пристрої та/чи інформаційні технології для розв’язування задач з різних галузей.",cases:["auth","computer"]},
+{group:"ІФО 1 · Робота з інформацією, даними, моделями",id:"1.2.3",text:"Досліджує та аналізує набори даних, взаємозв’язки та залежності у них.",cases:["yard","rating","computer"]},
+{group:"ІФО 1 · Робота з інформацією, даними, моделями",id:"1.4.1",text:"Обґрунтовує власну позицію щодо достовірності інформації та надійності джерел, застосовуючи стратегії критичного мислення.",cases:["rating"]},
+{group:"ІФО 2 · Створення інформаційних продуктів",id:"2.1.1",text:"Обирає відомі та розробляє власні алгоритми для розв’язування задач з різних галузей.",cases:["auth"]},
+{group:"ІФО 2 · Створення інформаційних продуктів",id:"2.4.1",text:"Створює та вдосконалює інформаційні продукти для розв’язування задач з різних галузей.",cases:["yard","rating","auth","computer"]},
+{group:"ІФО 2 · Створення інформаційних продуктів",id:"2.4.2",text:"Комбінує дані різних типів під час створення інформаційних продуктів.",cases:["yard","rating","computer"]},
+{group:"ІФО 2 · Створення інформаційних продуктів",id:"2.5.1",text:"Демонструє здатність гнучко взаємодіяти в команді та пристосовуватися до нових умов під час розробки проєктів з використанням інформаційних технологій.",cases:["yard","rating","auth","computer"]},
+{group:"ІФО 4 · Безпечна та відповідальна робота з ІТ",id:"4.1.2",text:"Обирає і застосовує стратегію кібербезпеки для власного інформаційного середовища.",cases:["auth"]}
+];
+const $=s=>document.querySelector(s);
+let state={caseId:"rating",level:"Основний",groupName:"",selected:[],evidence:{}};
+function load(){try{const s=JSON.parse(localStorage.getItem("practice1-v2")||"{}");state={...state,...s};}catch(e){}}
+function save(){localStorage.setItem("practice1-v2",JSON.stringify(state));render();}
+function renderCases(){
+$("#cases").innerHTML=cases.map(c=>'<label class="case '+(state.caseId===c.id?'selected':'')+'"><input type="radio" name="case" value="'+c.id+'" '+(state.caseId===c.id?'checked':'')+'><span class="tag">'+c.tag+'</span><h3>'+c.title+'</h3><p>'+c.situation+'</p><div class="role">Роль: '+c.role+'</div></label>').join("");
+document.querySelectorAll('input[name="case"]').forEach(el=>el.addEventListener("change",()=>{state.caseId=el.value;save();}));
+}
+function renderOutcomes(){
+const groups=[...new Set(outcomes.map(o=>o.group))];
+$("#outcomes").innerHTML=groups.map(g=>'<fieldset><legend>'+g+'</legend><div class="result-grid">'+outcomes.filter(o=>o.group===g).map(o=>'<label class="result"><input type="checkbox" data-id="'+o.id+'" '+(state.selected.includes(o.id)?'checked':'')+'><span><span class="code">'+o.id+'</span> '+o.text+'<small>'+(o.id==="2.5.1"?"Командний формат сам по собі не є доказом: спостерігайте взаємодію учасників.":o.cases.includes(state.caseId)?"Може бути доречним у цьому кейсі":"Перевірте особливо уважно: у кейсі неочевидний прямий доказ")+'</small></span></label>').join("")+'</div></fieldset>').join("");
+document.querySelectorAll('#outcomes input[type=checkbox]').forEach(el=>el.addEventListener("change",()=>{const id=el.dataset.id;if(el.checked&&state.selected.length>=3){el.checked=false;alert("Для цієї вправи оберіть не більше трьох головних результатів.");return;}state.selected=el.checked?[...state.selected,id]:state.selected.filter(x=>x!==id);if(el.checked&&!state.evidence[id])state.evidence[id]="";save();}));
+}
+function renderEvidence(){
+const chosen=state.selected.map(id=>outcomes.find(o=>o.id===id)).filter(Boolean);
+$("#count").textContent=state.selected.length;
+$("#evidence").innerHTML=chosen.length?chosen.map(o=>'<div class="ev-card"><div class="ev-head"><span class="badge">'+o.id+'</span><strong>'+o.text+'</strong></div><label class="field">Доказ у кейсі: яка дія учня або частина продукту це підтверджує?<textarea data-evidence="'+o.id+'" placeholder="Наприклад: учні порівнюють відповіді вікових груп і формулюють висновок за даними.">'+(state.evidence[o.id]||"")+'</textarea></label></div>').join(""):'<p class="empty">Оберіть до трьох результатів. Кожен обраний результат з’явиться тут із полем для конкретного доказу.</p>';
+document.querySelectorAll("textarea[data-evidence]").forEach(el=>el.addEventListener("input",()=>{state.evidence[el.dataset.evidence]=el.value;localStorage.setItem("practice1-v2",JSON.stringify(state));renderSummary();}));
+}
+function renderSummary(){
+const c=cases.find(x=>x.id===state.caseId);
+const selected=state.selected.map(id=>outcomes.find(o=>o.id===id)).filter(Boolean);
+const group=state.groupName.trim()||"Не вказано";
+const rows=selected.length?selected.map(o=>'<div class="summary-row"><span class="badge">'+o.id+'</span><strong>'+o.text+'</strong><p><b>Доказ:</b> '+(state.evidence[o.id]?.trim()?escapeHTML(state.evidence[o.id].trim()):'<span style="color:#9a5b16">ще не заповнено</span>')+'</p></div>').join(""):'<p class="empty">Поки не обрано жодного результату.</p>';
+$("#summary").innerHTML='<h3>Підсумок групи</h3><p><b>Група:</b> '+escapeHTML(group)+' &nbsp;·&nbsp; <b>Рівень:</b> '+escapeHTML(state.level)+'</p><p><b>Кейс:</b> '+c.title+'</p><p><b>Ситуація:</b> '+c.situation+'</p><p><b>Дії учнів:</b> '+c.actions.join("; ")+'</p><p><b>Продукт:</b> '+c.product+'</p>'+rows+'<div class="summary-row"><b>Перевірка:</b> обрано '+selected.length+' результат(и). '+(selected.length&&selected.every(o=>state.evidence[o.id]?.trim())?'Для кожного наведено доказ.':'Заповніть доказ для кожного обраного результату.')+'</div>';
+}
+function escapeHTML(x){return x.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function render(){renderCases();renderOutcomes();renderEvidence();renderSummary();$("#groupName").value=state.groupName;$("#level").value=state.level;}
+function plainSummary(){const c=cases.find(x=>x.id===state.caseId);let t="Практика 1 — Від кейсу до результату навчання\nГрупа: "+(state.groupName||"не вказано")+" | Рівень: "+state.level+"\nКейс: "+c.title+"\nПродукт кейсу: "+c.product+"\n\n";if(!state.selected.length)t+="Результатів ще не обрано.\n";state.selected.forEach(id=>{const o=outcomes.find(x=>x.id===id);t+=o.id+" — "+o.text+"\nДоказ: "+(state.evidence[id]||"не заповнено")+"\n\n";});return t;}
+load();render();
+$("#groupName").addEventListener("input",e=>{state.groupName=e.target.value;localStorage.setItem("practice1-v2",JSON.stringify(state));renderSummary();});
+$("#level").addEventListener("change",e=>{state.level=e.target.value;save();});
+$("#copyBtn").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(plainSummary());$("#copyStatus").textContent="Підсумок скопійовано. Його можна вставити в документ або чат."; }catch(e){$("#copyStatus").textContent="Браузер не дозволив копіювання. Виділіть текст у підсумку та скопіюйте вручну."; }});
+$("#pdfBtn").addEventListener("click",()=>window.print());
+$("#resetBtn").addEventListener("click",()=>{if(confirm("Очистити відповіді цієї практики в цьому браузері?")){localStorage.removeItem("practice1-v2");state={caseId:"rating",level:"Основний",groupName:"",selected:[],evidence:{}};render();}});
+</script>
+</body>
+</html>
